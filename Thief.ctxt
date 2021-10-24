@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Thief
+comment0.text=\r\n\ A\ subclass\ of\ Hero\ representing\ a\ character\ of\ the\ Thief\ role\r\n\r\n\ @author\ Michael\ Cummings\r\n\ @version\ 10.24.21\r\n
+comment1.params=
+comment1.target=Thief()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Thief\r\n
+comment2.params=name\ species\ age\ weight\ height
+comment2.target=Thief(java.lang.String,\ java.lang.String,\ int,\ double,\ double)
+comment2.text=\r\n\ Constructor\ for\ Thief\ objects\ with\ user\ defined\ parameters\r\n\ @param\ name\ \ the\ character's\ name\r\n\ @param\ species\ \ \ the\ character's\ species\r\n\ @param\ age\ \ \ the\ character's\ age\ in\ years\r\n\ @param\ weight\ \ \ \ the\ character's\ weight\ in\ pounds\r\n\ @param\ height\ \ \ \ the\ character's\ height\ in\ centimeters\r\n
+comment3.params=
+comment3.target=void\ useLockpick()
+comment3.text=\r\n\ Method\ representing\ the\ Thief\ utilizing\ a\ lockpick.\ This\ action\ would\ cost\ 2\ stamina\ points.\r\n
+comment4.params=
+comment4.target=void\ throwSmokeBomb()
+comment4.text=\r\n\ Method\ representing\ the\ Thief\ deploying\ a\ smoke\ bomb.\ This\ action\ would\ cost\ 5\ stamina\ points.\r\n
+numComments=5

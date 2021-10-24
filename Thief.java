@@ -1,26 +1,26 @@
 
 /**
- * A subclass of Hero representing a character of the Knight role
+ * A subclass of Hero representing a character of the Thief role
  *
  * @author Michael Cummings
  * @version 10.24.21
  */
-public class Knight extends Hero
+public class Thief extends Hero
 {
     /**
-     * Constructor for objects of class Knight
+     * Constructor for objects of class Thief
      */
-    public Knight()
+    public Thief()
     {
         this.setName("Unknown");
         this.setSpecies("Human");
         this.setAge(21);
-        this.setWeight(185); //Weight in pounds
-        this.setHeight(190); //Height in centimeters, converted from 6'3"
-        this.setRole("Knight");
+        this.setWeight(150);
+        this.setHeight(167.64); //converted from 5'6" to centimeters
+        this.setRole("Thief");
         
-        this.setStatStrength(this.getStatStrength() + 2); //Knights get a +2 bonus to Strength and Fortitude
-        this.setStatFortitude(this.getStatFortitude() + 2);
+        this.setStatAgility(this.getStatAgility() + 2); //Thieves get +2 to their Agility and Charisma attributes
+        this.setStatCharisma(this.getStatCharisma() + 2);
         
         this.setMaxHealthPoints(BASE_HEALTH);
         this.setCurrentHealthPoints(this.getMaxHealthPoints());
@@ -29,28 +29,29 @@ public class Knight extends Hero
         this.setMaxMagicPoints(BASE_MAGIC);
         this.setCurrentMagicPoints(this.getMaxMagicPoints());
         
-        this.setWeaponSlotOneName("Sword"); //Knight class default weapons are a sword and shield
-        this.setWeaponSlotTwoName("Shield");
+        this.setWeaponSlotOneName("Dagger");
+        this.setWeaponSlotTwoName("Smoke Bomb");
     }
+    
     /**
-     * Constructor for Knight objects with user defined parameters
+     * Constructor for Thief objects with user defined parameters
      * @param name  the character's name
      * @param species   the character's species
      * @param age   the character's age in years
      * @param weight    the character's weight in pounds
      * @param height    the character's height in centimeters
      */
-    public Knight(String name, String species, int age, double weight, double height)
+    public Thief(String name, String species, int age, double weight, double height)
     {
         this.setName(name);
         this.setSpecies(species);
         this.setAge(age);
         this.setWeight(weight);
         this.setHeight(height);
-        this.setRole("Knight");
+        this.setRole("Thief");
         
-        this.setStatStrength(this.getStatStrength() + 2); //Knights get a +2 bonus to Strength and Fortitude
-        this.setStatFortitude(this.getStatFortitude() + 2);
+        this.setStatAgility(this.getStatAgility() + 2); //Thieves get +2 to their Agility and Charisma attributes
+        this.setStatCharisma(this.getStatCharisma() + 2);
         
         this.setMaxHealthPoints(BASE_HEALTH);
         this.setCurrentHealthPoints(this.getMaxHealthPoints());
@@ -59,20 +60,20 @@ public class Knight extends Hero
         this.setMaxMagicPoints(BASE_MAGIC);
         this.setCurrentMagicPoints(this.getMaxMagicPoints());
         
-        this.setWeaponSlotOneName("Sword"); //Knight class default weapons are a sword and shield
-        this.setWeaponSlotTwoName("Shield");
+        this.setWeaponSlotOneName("Dagger");
+        this.setWeaponSlotTwoName("Smoke Bomb");
     }
 
     /**
-     * Method representing the Knight charging forward with their sword. This action would cost the Knight 10 stamina points
+     * Method representing the Thief utilizing a lockpick. This action would cost 2 stamina points.
      */
-    public void charge()
+    public void useLockpick()
     {
-        int staminaPointCost = 10;
-        if(this.getCurrentStaminaPoints() >= staminaPointCost)
+        int staminaPointCost = 2;
+        if (this.getCurrentStaminaPoints() >= staminaPointCost)
         {
             this.setCurrentStaminaPoints(this.getCurrentStaminaPoints() - staminaPointCost);
-            System.out.println(this.getName() + " raises their " + this.getWeaponSlotOneName() + " and charges forward!");
+            System.out.println(this.getName() + " attempts to pick the lock.");
         }
         else
         {
@@ -81,15 +82,15 @@ public class Knight extends Hero
     }
     
     /**
-     * Method representing the Knight raising their shield to defend against an attack. This action would cost the Knight 5 stamina points
+     * Method representing the Thief deploying a smoke bomb. This action would cost 5 stamina points.
      */
-    public void shieldBlock()
+    public void throwSmokeBomb()
     {
         int staminaPointCost = 5;
-        if(this.getCurrentStaminaPoints() >= 5)
+        if (this.getCurrentStaminaPoints() >= 5)
         {
             this.setCurrentStaminaPoints(this.getCurrentStaminaPoints() - staminaPointCost);
-            System.out.println(this.getName() + " holds their " + this.getWeaponSlotTwoName() + " up and braces themselves!");
+            System.out.println(this.getName() + " throws a smoke bomb at their feet, and they disappear into a cloud of dark, choking gas!");
         }
         else
         {

@@ -70,11 +70,11 @@ public class Hero
     
     /**
      * Constructor for Hero objects with user defined parameters
-     * @param name
-     * @param species
-     * @param age
-     * @param weight
-     * @param height
+     * @param name  the character's name
+     * @param species   the character's species
+     * @param age   the character's age in years
+     * @param weight    the character's weight in pounds
+     * @param height    the character's height in centimeters
      */
     public Hero(String name, String species, int age, double weight, double height)
     {
@@ -109,7 +109,7 @@ public class Hero
     
     /**
      * Method to set a Hero's name to a desired String
-     * @param playerName
+     * @param playerName    the character's intended name
      */
     public void setName(String playerName)
     {
@@ -117,6 +117,7 @@ public class Hero
     }
     /**
      * Method to print a Hero's name
+     * @return name     the character's name
      */
     public String getName()
     {
@@ -124,7 +125,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's age
-     * @param playerAge
+     * @param playerAge     the character's intended age     
      */
     public void setAge(int playerAge)
     {
@@ -132,6 +133,7 @@ public class Hero
     }
     /**
      * Method to print a Hero's age
+     * @return age      the character's age
      */
     public int getAge()
     {
@@ -139,7 +141,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's species (Human, Elf, Orc, etc.)
-     * @param playerSpecies
+     * @param playerSpecies     the character's intended species
      */
     public void setSpecies(String playerSpecies)
     {
@@ -147,6 +149,7 @@ public class Hero
     }
     /**
      * Method to print a Hero's species
+     * @return species      the character's species
      */
     public String getSpecies()
     {
@@ -154,7 +157,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's role. Meant only to be used in subclass constructors
-     * @param playerRole
+     * @param playerRole    the character's role
      */
     public void setRole(String playerRole)
     {
@@ -162,6 +165,7 @@ public class Hero
     }
     /**
      * Method to print a Hero's role. No complementing set method because role will be set by subclass
+     * @return role     the character's role
      */
     public String getRole()
     {
@@ -169,7 +173,7 @@ public class Hero
     }
     /**
      * Method to set a character's height
-     * @param playerHeight
+     * @param playerHeight     the character's height in centimeters
      */
     public void setHeight(double playerHeight)
     {
@@ -177,6 +181,7 @@ public class Hero
     }
     /**
      * Method to print a player's height
+     * @return height   the character's height in centimeters
      */
     public double getHeight()
     {
@@ -184,7 +189,7 @@ public class Hero
     }
     /**
      * Method to set a character's weight
-     * @param playerWeight
+     * @param playerWeight      the character's weight in pounds
      */
     public void setWeight(double playerWeight)
     {
@@ -192,6 +197,7 @@ public class Hero
     }
     /**
      * Method to print a character's weight
+     * @return weight   the character's weight in pounds
      */
     public double getWeight()
     {
@@ -200,6 +206,7 @@ public class Hero
     
     /**
      * Method to return a Hero's Strength attribute
+     * @return strength     the character's Strength attribute
      */
     public int getStatStrength()
     {
@@ -207,7 +214,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's Strength attribute
-     * @param strength
+     * @param strength      the character's intended Strength attribute
      */
     public void setStatStrength(int strength)
     {
@@ -215,6 +222,7 @@ public class Hero
     }
     /**
      * Method to return a Hero's Dexterity attribute
+     * @return dexterity    the character's Dexterity attribute
      */
     public int getStatDexterity()
     {
@@ -222,7 +230,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's Dexterity attribute
-     * @param dexterity
+     * @param dexterity     the character's intended Dexterity attribute
      */
     public void setStatDexterity(int dexterity)
     {
@@ -230,6 +238,7 @@ public class Hero
     }
     /**
      * Method to return a Hero's Fortitude stat
+     * @return fortitude    the character's Fortitude attribute
      */
     public int getStatFortitude()
     {
@@ -237,7 +246,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's Fortitude attribute
-     * @param fortitude
+     * @param fortitude     the character's intended Fortitude attribute
      */
     public void setStatFortitude(int fortitude)
     {
@@ -245,6 +254,7 @@ public class Hero
     }
     /**
      * Method to return a Hero's Agility attribute
+     * @return agility      the character's Agility attribute
      */
     public int getStatAgility()
     {
@@ -252,7 +262,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's Agility attribute
-     * @param agility
+     * @param agility       the character's intended Agility attribute
      */
     public void setStatAgility(int agility)
     {
@@ -260,6 +270,7 @@ public class Hero
     }
     /**
      * Method to return a Hero's Intelligence attribute
+     * @return intelligence     the character's Intelligence attribute
      */
     public int getStatIntelligence()
     {
@@ -267,7 +278,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's Intelligence attribute
-     * @param intelligence
+     * @param intelligence      the character's intended Intelligence attribute
      */
     public void setStatIntelligence(int intelligence)
     {
@@ -275,6 +286,7 @@ public class Hero
     }
     /**
      * Method to return a Hero's Charisma attribute
+     * @return charisma     the character's Charisma attribute
      */
     public int getStatCharisma()
     {
@@ -282,7 +294,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's Charisma attribute
-     * @param charisma
+     * @param charisma      the character's intended Charisma attribute
      */
     public void setStatCharisma(int charisma)
     {
@@ -290,6 +302,7 @@ public class Hero
     }
     /**
      * Method to return a Hero's Luck attribute
+     * @return luck     the character's Luck attribute
      */
     public int getStatLuck()
     {
@@ -297,7 +310,7 @@ public class Hero
     }
     /**
      * Method to set a Hero's Luck attribute
-     * @param luck
+     * @param luck      the character's intended Luck attribute
      */
     public void setStatLuck(int luck)
     {
@@ -306,6 +319,7 @@ public class Hero
     
     /**
      * Method to return a Hero's maximum health point value
+     * @return maxHealth    the character's maximum health point value
      */
     public int getMaxHealthPoints()
     {
@@ -313,14 +327,15 @@ public class Hero
     }
     /**
      * Method to set a Hero's maximum health point value. A Hero's maximum health points are given a bonus depending on that Hero's Fortitude attribute.
-     * @param health
+     * @param maxHealth     the character's intended maximum health value, not counting any bonus granted by the character's Fortitude attribute  
      */
-    public void setMaxHealthPoints(int health)
+    public void setMaxHealthPoints(int maxHealth)
     {
-        this.maxHealthPoints = health + this.statFortitude;
+        this.maxHealthPoints = maxHealth + this.statFortitude;
     }
     /**
      * Method to return a Hero's current health point value
+     * @return currentHealth    the character's current health point value
      */
     public int getCurrentHealthPoints()
     {
@@ -328,14 +343,15 @@ public class Hero
     }
     /**
      * Method to set a Hero's current health point value
-     * @param health
+     * @param currentHealth     the character's intended current health point value
      */
-    public void setCurrentHealthPoints(int health)
+    public void setCurrentHealthPoints(int currentHealth)
     {
-        this.currentHealthPoints = health;
+        this.currentHealthPoints = currentHealth;
     }
     /**
      * Method to return a Hero's maximum stamina point value
+     * @return maxStamina   the character's maximum stamina point value
      */
     public int getMaxStaminaPoints()
     {
@@ -343,14 +359,15 @@ public class Hero
     }
     /**
      * Method to set a Hero's maximum stamina point value. A Hero's maximum stamina points are given a bonus depending on their Agility attribute.
-     * @param stamina
+     * @param maxStamina    the character's intended maximum stamina value, not counting any bonus granted by the Hero's Agility attribute
      */
-    public void setMaxStaminaPoints(int stamina)
+    public void setMaxStaminaPoints(int maxStamina)
     {
-        this.maxStaminaPoints = stamina + this.statAgility;
+        this.maxStaminaPoints = maxStamina + this.statAgility;
     }
     /**
      * Method to return a Hero's current stamina point value
+     * @return currentStamina   the Hero's current stamina point value
      */
     public int getCurrentStaminaPoints()
     {
@@ -358,14 +375,15 @@ public class Hero
     }
     /**
      * Method to set a Hero's current stamina point value
-     * @param stamina
+     * @param currentStamina    the character's intended current stamina point value
      */
-    public void setCurrentStaminaPoints(int stamina)
+    public void setCurrentStaminaPoints(int currentStamina)
     {
-        this.currentStaminaPoints = stamina;
+        this.currentStaminaPoints = currentStamina;
     }
     /**
      * Method to return a Hero's maximum magic point value
+     * @return maxMagic     the character's maximum magic point value
      */
     public int getMaxMagicPoints()
     {
@@ -373,14 +391,15 @@ public class Hero
     }
     /**
      * Method to set a Hero's maximum magic point value. A Hero's maximum magic points are given a bonus depending on their Intelligence attribute.
-     * @param magic
+     * @param maxMagic      the character's intended maximum magic point value, not counting any bonus granted by the Hero's Intelligence attribute
      */
-    public void setMaxMagicPoints(int magic)
+    public void setMaxMagicPoints(int maxMagic)
     {
-        this.maxMagicPoints = magic + this.statIntelligence;
+        this.maxMagicPoints = maxMagic + this.statIntelligence;
     }
     /**
      * Method to return a Hero's current magic point value
+     * @return currentMagic     the Hero's current magic point value
      */
     public int getCurrentMagicPoints()
     {
@@ -388,15 +407,16 @@ public class Hero
     }
     /**
      * Method to set a Hero's current magic point value
-     * int magic
+     * @param currentMagic      the Hero's intended current magic point value
      */
-    public void setCurrentMagicPoints(int magic)
+    public void setCurrentMagicPoints(int currentMagic)
     {
-        this.currentMagicPoints = magic;
+        this.currentMagicPoints = currentMagic;
     }
     
     /**
      * Method to return the String in weaponSlotOneName
+     * @return weaponOne    the String in weaponSlotOneName
      */
     public String getWeaponSlotOneName()
     {
@@ -404,6 +424,7 @@ public class Hero
     }
     /**
      * Method to set the String in weaponSlotOneName
+     * @param weaponOne     the String to be entered in weaponSlotOneName
      */
     public void setWeaponSlotOneName(String name)
     {
@@ -411,6 +432,7 @@ public class Hero
     }
     /**
      * Method to return the String in weaponSlotTwoName
+     * @return weaponTwo    the String in weaponSlotTwoName
      */
     public String getWeaponSlotTwoName()
     {
@@ -418,6 +440,7 @@ public class Hero
     }
     /**
      * Method to set the String in weaponSlotTwoName
+     * @param weaponTwo     the String to be entered in weaponSlotTwoName
      */
     public void setWeaponSlotTwoName(String name)
     {

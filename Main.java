@@ -9,15 +9,19 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Hero character1 = new Hero();
+        Knight character1 = new Knight();
+        character1.charge();
         character1.getInfoSimple();
+        character1.getInfo();
         
-        Hero character2 = new Hero("Madeline", "Elf", 24, 135.0, 165);
+        Wizard character2 = new Wizard("J'Zargo", "Khajiit", 20, 155, 167.64);
+        character2.castLightningBolt();
+        character2.getInfoSimple();
         character2.getInfo();
         
-        Knight character3 = new Knight("Steve", "Dwarf", 36, 210, 95);
-        character3.getInfo();
+        Thief character3 = new Thief("Garrett", "Human", 26, 170, 180);
+        character3.throwSmokeBomb();
         character3.getInfoSimple();
-        character3.charge();
+        character3.getInfo();
     }
 }
