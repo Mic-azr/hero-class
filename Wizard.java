@@ -18,6 +18,7 @@ public class Wizard extends Hero
         this.setWeight(130);
         this.setHeight(180.33); //converted from 5'11" to centimeters
         this.setRole("Wizard");
+        this.setLevel(2);
         
         this.setStatIntelligence(this.getStatIntelligence() + 2); //Wizards get a +2 bonus to their Intelligence and Luck attributes
         this.setStatLuck(this.getStatLuck() + 2);
@@ -49,6 +50,7 @@ public class Wizard extends Hero
         this.setWeight(weight);
         this.setHeight(height);
         this.setRole("Wizard");
+        this.setLevel(2);
         
         this.setStatIntelligence(this.getStatIntelligence() + 2); //Wizards get a +2 bonus to their Intelligence and Luck attributes
         this.setStatLuck(this.getStatLuck() + 2);

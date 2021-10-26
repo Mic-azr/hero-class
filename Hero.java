@@ -1,7 +1,7 @@
 /**
  *A class representing a player character in a fantasy role-playing game, such as the Dungeons & Dragons tabletop game or The Elder Scrolls video games.
  *@author Michael Cummings
- *@version 10.23.21
+ *@version 10.26.21
  */
 public class Hero
 {
@@ -11,6 +11,7 @@ public class Hero
     
     private String name;
     private String species; //Hero characters don't necessarily have to be human
+    private int level; //int representing a Hero's overall power level. Default Hero objects are constructed with a level=1, subclasses are constructed with lvl=2
     private String role = "None"; //Subclasses will assign the Hero class the role field, default is None
     private int age;
     private double weight; //weight will be represented in pounds
@@ -20,6 +21,7 @@ public class Hero
     private int statDexterity; //The Dexterity stat determines how well a character performs physical feats requiring precision and finesse
     private int statFortitude; //The Fortitude stat determines how much damage a Hero can sustain by adding to ther Hero's base Health Points
     private int statAgility; //The Agility stat determines how fast a Hero can move, as well as their chance to avoid damage. Also determines a Hero's minimum Stamina points
+    private int statPerception; //The Perception stat determines a Hero's degree of situational awareness and intuition. Used to determine wether the Hero recognizes subtle details and clues in their environment and in dialogue with other characters
     private int statIntelligence; //The Intelligence stat determines how many Magic Points a character has, and consequently which spells that Hero can cast
     private int statCharisma;//The Charisma stat influences how much non-player characters like the Hero character
     private int statLuck; //The Luck stat influences how the Hero is impacted by events involving randomness
@@ -42,13 +44,15 @@ public class Hero
         this.name = "Unknown";
         this.age = 18;
         this.species = "Human";
+        this.level = 1;
         this.weight = 160.0; //Weight in pounds
         this.height = 177.8; //Height in centimeters, converted from 5'10" (thanks Google!)
         
-        this.statStrength = 10; //10 is the default value for character attributes
+        this.statStrength = 10; //10 is the default value for character attributes, meant to represent the degree to which the average person possesses that attribute
         this.statDexterity = 10;
         this.statFortitude = 10;
         this.statAgility = 10;
+        this.statPerception = 10;
         this.statIntelligence = 10;
         this.statCharisma = 10;
         this.statLuck = 10;
@@ -81,6 +85,7 @@ public class Hero
         this.name = name;
         this.species = species;
         this.age = age;
+        this.level = 1;
         this.weight = weight;
         this.height = height;
         
@@ -89,6 +94,7 @@ public class Hero
         this.statFortitude = 10;
         this.statAgility = 10;
         this.statIntelligence = 10;
+        this.statPerception = 10;
         this.statCharisma = 10;
         this.statLuck = 10;
         
@@ -155,6 +161,36 @@ public class Hero
     {
         return this.species;
     }
+    /**
+     * Method to return a Hero's level
+     * @return level    the character's level
+     */
+    public int getLevel()
+    {
+        return this.level;
+    }
+    /**
+     * Method to set a Hero's level
+     * @param level the character's intended level
+     */
+    public void setLevel(int level)
+    {
+        this.level = level;
+    }
+    /**
+     * TODO: levelUp()
+     * This method would first increment the Hero's level by one. 
+     * Then, it would print a message to the terminal containing the Hero's name and new level.
+     * Then, it would prompt the user to select one of their character's attributes to increment by one.
+     * This prompt repeats once.
+     */
+    // public void levelUp()
+    // {
+        // this.level = this.level++;
+        // int attributePointsToSpend = 2; //Whenever a Hero gains a level, they earn 2 points to spend on any of their attributes, 1 point = +1 to chosen attribute. Players may choose to spend both attribute points on the same attribute, but must spend both points and not save them
+        // System.out.println(this.name + " is now level " + this.level + "!");
+        // System.out.println(this.name + " has " + attributePointsToSpend + " points to spend to upgrade their attributes.");
+    // }
     /**
      * Method to set a Hero's role. Meant only to be used in subclass constructors
      * @param playerRole    the character's role
@@ -267,6 +303,22 @@ public class Hero
     public void setStatAgility(int agility)
     {
         this.statAgility = agility;
+    }
+    /**
+     * Method to return a Hero's Perception attribute
+     * @return perception   the character's Perception attribute
+     */
+    public int getStatPerception()
+    {
+        return this.statPerception;
+    }
+    /**
+     * Method to set a Hero's Perception attribute
+     * @param perception    the character's intended Perception attribute
+     */
+    public void setStatPerception(int perception)
+    {
+        this.statPerception = perception;
     }
     /**
      * Method to return a Hero's Intelligence attribute
@@ -456,6 +508,7 @@ public class Hero
         System.out.println("Name: " + this.name);
         System.out.println("Age: " + this.age);
         System.out.println("Species: " + this.species);
+        System.out.println("Level: " + this.level);
         System.out.println("Height: " + this.height + " cm");
         System.out.println("Weight: " + this.weight + " lbs");
         System.out.println("Role: " + this.role);
@@ -474,6 +527,7 @@ public class Hero
         System.out.println("Dexterity: " + this.statDexterity);
         System.out.println("Fortitude: " + this.statFortitude);
         System.out.println("Agility: " + this.statAgility);
+        System.out.println("Perception: " + this.statPerception);
         System.out.println("Intelligence: " + this.statIntelligence);
         System.out.println("Charisma: " + this.statCharisma);
         System.out.println("Luck: " + this.statLuck);
@@ -488,11 +542,11 @@ public class Hero
     {
         if(this.role.equals("None"))
         {
-            System.out.println(this.name + " is a " + this.age + "-year-old " + this.species + " who has yet to find their destiny.");
+            System.out.println(this.name + " is a " + this.age + "-year-old " + "Level " + this.level + " " + this.species + " who has yet to find their destiny.");
         }
         else
         {
-            System.out.println(this.name + " is a " + this.age + "-year-old " + this.species + " " + this.role + ".");
+            System.out.println(this.name + " is a " + this.age + "-year-old " + "Level " + this.level + " " + this.species + " " + this.role + ".");
         }
         System.out.println();
     }

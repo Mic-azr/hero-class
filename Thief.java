@@ -18,6 +18,7 @@ public class Thief extends Hero
         this.setWeight(150);
         this.setHeight(167.64); //converted from 5'6" to centimeters
         this.setRole("Thief");
+        this.setLevel(2);
         
         this.setStatAgility(this.getStatAgility() + 2); //Thieves get +2 to their Agility and Charisma attributes
         this.setStatCharisma(this.getStatCharisma() + 2);
@@ -49,6 +50,7 @@ public class Thief extends Hero
         this.setWeight(weight);
         this.setHeight(height);
         this.setRole("Thief");
+        this.setLevel(2);
         
         this.setStatAgility(this.getStatAgility() + 2); //Thieves get +2 to their Agility and Charisma attributes
         this.setStatCharisma(this.getStatCharisma() + 2);
@@ -87,7 +89,7 @@ public class Thief extends Hero
     public void throwSmokeBomb()
     {
         int staminaPointCost = 5;
-        if (this.getCurrentStaminaPoints() >= 5)
+        if (this.getCurrentStaminaPoints() >= staminaPointCost)
         {
             this.setCurrentStaminaPoints(this.getCurrentStaminaPoints() - staminaPointCost);
             System.out.println(this.getName() + " throws a smoke bomb at their feet, and they disappear into a cloud of dark, choking gas!");

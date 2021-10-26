@@ -3,7 +3,7 @@
  * A subclass of Hero representing a character of the Knight role
  *
  * @author Michael Cummings
- * @version 10.24.21
+ * @version 10.26.21
  */
 public class Knight extends Hero
 {
@@ -18,6 +18,7 @@ public class Knight extends Hero
         this.setWeight(185); //Weight in pounds
         this.setHeight(190); //Height in centimeters, converted from 6'3"
         this.setRole("Knight");
+        this.setLevel(2); //TODO: Write get / set for level, and levelUp method
         
         this.setStatStrength(this.getStatStrength() + 2); //Knights get a +2 bonus to Strength and Fortitude
         this.setStatFortitude(this.getStatFortitude() + 2);
@@ -48,6 +49,7 @@ public class Knight extends Hero
         this.setWeight(weight);
         this.setHeight(height);
         this.setRole("Knight");
+        this.setLevel(2);
         
         this.setStatStrength(this.getStatStrength() + 2); //Knights get a +2 bonus to Strength and Fortitude
         this.setStatFortitude(this.getStatFortitude() + 2);
@@ -86,7 +88,7 @@ public class Knight extends Hero
     public void shieldBlock()
     {
         int staminaPointCost = 5;
-        if(this.getCurrentStaminaPoints() >= 5)
+        if(this.getCurrentStaminaPoints() >= staminaPointCost)
         {
             this.setCurrentStaminaPoints(this.getCurrentStaminaPoints() - staminaPointCost);
             System.out.println(this.getName() + " holds their " + this.getWeaponSlotTwoName() + " up and braces themselves!");

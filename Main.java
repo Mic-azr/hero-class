@@ -3,8 +3,11 @@
  * Driver program for Hero class and subclasses
  *
  * @author Michael Cummings
- * @version (a version number or a date)
+ * @version 10.26.21
  */
+
+import java.util.Scanner;
+
 public class Main
 {
     public static void main(String[] args)
@@ -23,5 +26,11 @@ public class Main
         character3.throwSmokeBomb();
         character3.getInfoSimple();
         character3.getInfo();
+        
+        Druid character4 = new Druid("Saria", "Elf", 24, 120, 165, "Hypnos", "Great Horned Owl", 2.7, 50);
+        character4.treebarkShield();
+        character4.animalCompanionDefend();
+        character4.getInfoSimple();
+        character4.getInfo();
     }
 }

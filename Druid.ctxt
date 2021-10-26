@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Druid
+comment0.text=\r\n\ A\ subclass\ of\ Hero\ representing\ a\ character\ of\ the\ Druid\ role.\ Similar\ to\ the\ Wizard,\ the\ Druid\ is\ magically\ skilled,\ but\ draws\ their\ power\ from\ nature\ rather\ than\ the\ arcane.\r\n\ The\ Druid\ is\ unique\ in\ that\ they\ have\ an\ animal\ companion\ with\ its\ own\ name,\ species,\ health\ value,\ stamina\ value,\ height\ and\ weight.\r\n\ @author\ Michael\ Cummings\r\n\ @version\ 10.26.21\r\n
+comment1.params=
+comment1.target=Druid()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Druid\r\n
+comment2.params=name\ species\ age\ weight\ height\ animalName\ animalSpecies\ animalWeight\ animalHeight
+comment2.target=Druid(java.lang.String,\ java.lang.String,\ int,\ double,\ double,\ java.lang.String,\ java.lang.String,\ double,\ double)
+comment2.text=\r\n\ Constructor\ for\ Druid\ objects\ with\ user\ defined\ parameters.\ \r\n\ Has\ 9\ params\ altogether,\ so\ maybe\ the\ next\ place\ to\ go\ with\ this\ project\ is\ constructing\ a\ more\ robust\ Main\ allowing\ for\ creation\ of\ Heroes\ through\ user\ prompts,\ that\ way\ could\ split\ a\ constructor\ like\ this\ into\ two\ sets\ of\ prompts,\ one\ for\ the\ Hero\ and\ one\ for\ the\ companion\r\n\ @param\ name\ \ the\ character's\ intended\ name\r\n\ @param\ species\ \ \ the\ character's\ intended\ species\r\n\ @param\ age\ \ \ the\ character's\ intended\ age\r\n\ @param\ weight\ \ \ \ the\ character's\ intended\ weight\r\n\ @param\ height\ \ \ \ the\ character's\ intended\ height\r\n\ @param\ animalName\ \ \ \ the\ animal\ companion's\ intended\ name\r\n\ @param\ animalSpecies\ the\ animal\ companion's\ intended\ species\r\n\ @param\ animalWeight\ \ the\ animal\ companion's\ intended\ weight\r\n\ @param\ animalHeight\ \ the\ animal\ companion's\ intended\ height\r\n
+comment3.params=
+comment3.target=void\ treebarkShield()
+comment3.text=\r\n\ Method\ representing\ the\ Druid\ using\ their\ magic\ to\ make\ their\ skin\ as\ hard\ and\ thick\ as\ a\ tree\ trunk,\ protecting\ them\ from\ damage\r\n
+comment4.params=
+comment4.target=void\ plantAttack()
+comment4.text=\r\n\ Method\ representing\ the\ Druid\ using\ their\ magic\ to\ cause\ plants\ and\ vines\ to\ erupt\ from\ the\ ground,\ slowing\ enemies\ and\ blocking\ their\ path.\r\n
+comment5.params=
+comment5.target=void\ animalCompanionAttack()
+comment5.text=\r\n\ Method\ representing\ the\ animal\ companion\ attacking\ a\ target\r\n
+comment6.params=
+comment6.target=void\ animalCompanionDefend()
+comment6.text=\r\n\ Method\ representing\ the\ animal\ companion\ guarding\ the\ Druid\r\n
+comment7.params=
+comment7.target=void\ getInfo()
+comment7.text=\r\n\ Method\ to\ print\ the\ info\ for\ a\ Druid\ Hero\ and\ their\ animal\ companion\r\n
+comment8.params=
+comment8.target=void\ getInfoSimple()
+numComments=9
