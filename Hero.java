@@ -1,17 +1,17 @@
 /**
  *A class representing a player character in a fantasy role-playing game, such as the Dungeons & Dragons tabletop game or The Elder Scrolls video games.
  *@author Michael Cummings
- *@version 10.26.21
+ *@version 3.21.23
  */
 public class Hero
 {
-    public final int BASE_HEALTH = 90; //Minimum value for a Hero character's maximum health, intended to be added to a base statFortitude of 10 to equal a base maxHealthPoints of 100
-    public final int BASE_STAMINA = 40; //Minimum value for a Hero character's maximum stamina, intended to be added to a base statAgility of 10 to equal a base maxStaminaPoints of 50
-    public final int BASE_MAGIC = -10; //Minimum value for a Hero character's maximum stamina, intended to be a base statIntelligence of 10 to equal a base maxMagicPoints of 10; if maxMagicPoints would be <0, set maxMagicPoints to 0
+    public final int BASE_HEALTH = 100; //Minimum value for a Hero character's maximum health, summed with the Hero's Fortitude minus 10 to calculate the Hero's total Health
+    public final int BASE_STAMINA = 50; //Minimum value for a Hero character's maximum stamina, summed with the Hero's Agility minus 10 to calculate the Hero's total Stamina
+    public final int BASE_MAGIC = 0; //Minimum value for a Hero character's maximum magic, summed with the Hero's Intelligence minus 10 to calculate the Hero's total Magic
     
     private String name;
     private String species; //Hero characters don't necessarily have to be human
-    private int level; //int representing a Hero's overall power level. Default Hero objects are constructed with a level=1, subclasses are constructed with lvl=2
+    private int level; //int representing a Hero's overall power level. Default Hero objects are constructed with a level=1, subclasses are constructed with level=2
     private String role = "None"; //Subclasses will assign the Hero class the role field, default is None
     private int age;
     private double weight; //weight will be represented in pounds
@@ -48,7 +48,7 @@ public class Hero
         this.weight = 160.0; //Weight in pounds
         this.height = 177.8; //Height in centimeters, converted from 5'10" (thanks Google!)
         
-        this.statStrength = 10; //10 is the default value for character attributes, meant to represent the degree to which the average person possesses that attribute
+        this.statStrength = 10; //10 is the default value for character Stats, meant to represent the degree to which the average person possesses that attribute
         this.statDexterity = 10;
         this.statFortitude = 10;
         this.statAgility = 10;
@@ -57,15 +57,11 @@ public class Hero
         this.statCharisma = 10;
         this.statLuck = 10;
         
-        this.maxHealthPoints = BASE_HEALTH + this.statFortitude; //health is calculated by adding Hero's Fortitude stat to a base of 90
+        this.maxHealthPoints = BASE_HEALTH + (this.statFortitude - 10); //health is calculated by adding Hero's Fortitude stat minus 10 to a base of 100
         this.currentHealthPoints = this.maxHealthPoints;
-        this.maxStaminaPoints = BASE_STAMINA + this.statAgility; //stamina is calculated by adding Hero's Agility stat to a base of 40
+        this.maxStaminaPoints = BASE_STAMINA + (this.statAgility - 10); //stamina is calculated by adding Hero's Agility stat minus 10 to a base of 50
         this.currentStaminaPoints = this.maxStaminaPoints;
-        this.maxMagicPoints = BASE_MAGIC + this.statIntelligence; //magic is calculated by adding Hero's Intelligence stat to a base of -10
-        if(this.maxMagicPoints < 0) //if maxMagicPoints would be <0, set maxMagicPoints to 0
-        {
-            this.maxMagicPoints = 0;
-        }
+        this.maxMagicPoints = BASE_MAGIC + (this.statIntelligence - 10); //magic is calculated by adding Hero's Intelligence stat minus 10 to a base of 0
         this.currentMagicPoints = this.maxMagicPoints;
         
         this.weaponSlotOneName = "None";
@@ -82,14 +78,54 @@ public class Hero
      */
     public Hero(String name, String species, int age, double weight, double height)
     {
-        this.name = name;
-        this.species = species;
-        this.age = age;
-        this.level = 1;
-        this.weight = weight;
-        this.height = height;
+        if(name.length() < 1)
+        {
+            throw new IllegalArgumentException("Please enter a name containing at least one character."); 
+        }
+        else
+        {
+            this.name = name;
+        }
         
-        this.statStrength = 10; //10 is the default value for character attributes
+        if(species.length() < 1)
+        {
+            throw new IllegalArgumentException("Please enter a species name containing at least one character.");
+        }
+        else
+        {
+            this.species = species;
+        }
+        
+        if(age < 18)
+        {
+            throw new IllegalArgumentException("Hero characters should be adults of their species, and at least 18 years old.");
+        }
+        else
+        {
+            this.age = age;
+        }
+        
+        this.level = 1;
+        
+        if(weight <= 0)
+        {
+            throw new IllegalArgumentException("Hero characters can't weigh nothing, or have negative weight.");
+        }
+        else
+        {
+            this.weight = weight;
+        }
+        
+        if(height <= 0)
+        {
+            throw new IllegalArgumentException("Hero characters must have a height in cm greater than 0.");
+        }
+        else
+        {
+            this.height = height;
+        }
+        
+        this.statStrength = 10; //10 is the default value for character Stats
         this.statDexterity = 10;
         this.statFortitude = 10;
         this.statAgility = 10;
@@ -98,15 +134,11 @@ public class Hero
         this.statCharisma = 10;
         this.statLuck = 10;
         
-        this.maxHealthPoints = BASE_HEALTH + this.statFortitude; //health is calculated by adding Hero's Fortitude stat to a base of 90
+        this.maxHealthPoints = BASE_HEALTH + (this.statFortitude - 10); //health is calculated by adding Hero's Fortitude stat minus 10 to a base of 100
         this.currentHealthPoints = this.maxHealthPoints;
-        this.maxStaminaPoints = BASE_STAMINA + this.statAgility; //stamina is calculated by adding Hero's Agility stat to a base of 40
+        this.maxStaminaPoints = BASE_STAMINA + (this.statAgility - 10); //stamina is calculated by adding Hero's Agility stat minus 10 to a base of 50
         this.currentStaminaPoints = this.maxStaminaPoints;
-        this.maxMagicPoints = BASE_MAGIC + this.statIntelligence; //magic is calculated by adding Hero's Intelligence stat to a base of -10
-        if(this.maxMagicPoints < 0) //if maxMagicPoints would be <0, set maxMagicPoints to 0
-        {
-            this.maxMagicPoints = 0;
-        }
+        this.maxMagicPoints = BASE_MAGIC + (this.statIntelligence - 10); //magic is calculated by adding Hero's Intelligence stat minus 10 to a base of 0
         this.currentMagicPoints = this.maxMagicPoints;
         
         this.weaponSlotOneName = "None";
@@ -115,11 +147,18 @@ public class Hero
     
     /**
      * Method to set a Hero's name to a desired String
-     * @param playerName    the character's intended name
+     * @param characterName    the character's intended name
      */
-    public void setName(String playerName)
+    public void setName(String characterName)
     {
-        this.name = playerName;
+        if(characterName.length() < 1)
+        {
+            throw new IllegalArgumentException("Please enter a name containing at least one character."); 
+        }
+        else
+        {
+            this.name = characterName;
+        }
     }
     /**
      * Method to print a Hero's name
@@ -131,11 +170,18 @@ public class Hero
     }
     /**
      * Method to set a Hero's age
-     * @param playerAge     the character's intended age     
+     * @param characterAge     the character's intended age     
      */
-    public void setAge(int playerAge)
+    public void setAge(int characterAge)
     {
-        this.age = playerAge;
+        if(characterAge < 18)
+        {
+            throw new IllegalArgumentException("Hero characters should be adults of their species, and at least 18 years old.");
+        }
+        else
+        {
+            this.age = characterAge;
+        }
     }
     /**
      * Method to print a Hero's age
@@ -147,11 +193,18 @@ public class Hero
     }
     /**
      * Method to set a Hero's species (Human, Elf, Orc, etc.)
-     * @param playerSpecies     the character's intended species
+     * @param characterSpecies     the character's intended species
      */
-    public void setSpecies(String playerSpecies)
+    public void setSpecies(String characterSpecies)
     {
-        this.species = playerSpecies;
+        if(characterSpecies.length() < 1)
+        {
+            throw new IllegalArgumentException("Please enter a species name containing at least one character.");
+        }
+        else
+        {
+            this.species = characterSpecies;
+        }
     }
     /**
      * Method to print a Hero's species
@@ -171,36 +224,50 @@ public class Hero
     }
     /**
      * Method to set a Hero's level
-     * @param level the character's intended level
+     * @param characterLevel    the character's intended level
      */
-    public void setLevel(int level)
+    public void setLevel(int characterLevel)
     {
-        this.level = level;
+        if(characterLevel < 1)
+        {
+            throw new IllegalArgumentException("Hero characters must have a Level of 1 or higher.");
+        }
+        else
+        {
+            this.level = characterLevel;
+        }
     }
     /**
      * TODO: levelUp()
      * This method would first increment the Hero's level by one. 
      * Then, it would print a message to the terminal containing the Hero's name and new level.
-     * Then, it would prompt the user to select one of their character's attributes to increment by one.
+     * Then, it would prompt the user to select one of their character's Stats to increment by one.
      * This prompt repeats once.
      */
     // public void levelUp()
     // {
         // this.level = this.level++;
-        // int attributePointsToSpend = 2; //Whenever a Hero gains a level, they earn 2 points to spend on any of their attributes, 1 point = +1 to chosen attribute. Players may choose to spend both attribute points on the same attribute, but must spend both points and not save them
+        // int attributePointsToSpend = 2; //Whenever a Hero gains a level, they earn 2 points to spend on any of their Stats, 1 point = +1 to chosen Stat. Players may choose to spend both attribute points on the same Stat, but must spend both points and not save them
         // System.out.println(this.name + " is now level " + this.level + "!");
-        // System.out.println(this.name + " has " + attributePointsToSpend + " points to spend to upgrade their attributes.");
+        // System.out.println(this.name + " has " + attributePointsToSpend + " points to spend to upgrade their Stats.");
     // }
     /**
      * Method to set a Hero's role. Meant only to be used in subclass constructors
      * @param playerRole    the character's role
      */
-    public void setRole(String playerRole)
+    public void setRole(String characterRole)
     {
-        this.role = playerRole;
+        if(characterRole.length() < 1)
+        {
+            throw new IllegalArgumentException("Heroes must have a Role title at least one character long");
+        }
+        else
+        {
+            this.role = characterRole;
+        }
     }
     /**
-     * Method to print a Hero's role. No complementing set method because role will be set by subclass
+     * Method to print a Hero's role.
      * @return role     the character's role
      */
     public String getRole()
@@ -209,11 +276,18 @@ public class Hero
     }
     /**
      * Method to set a character's height
-     * @param playerHeight     the character's height in centimeters
+     * @param characterHeight     the character's height in centimeters
      */
-    public void setHeight(double playerHeight)
+    public void setHeight(double characterHeight)
     {
-        this.height = playerHeight;
+        if(characterHeight <= 0)
+        {
+            throw new IllegalArgumentException("Hero characters must have a height in cm greater than 0.");
+        }
+        else
+        {
+            this.height = characterHeight;
+        }
     }
     /**
      * Method to print a player's height
@@ -225,11 +299,18 @@ public class Hero
     }
     /**
      * Method to set a character's weight
-     * @param playerWeight      the character's weight in pounds
+     * @param characterWeight      the character's weight in pounds
      */
-    public void setWeight(double playerWeight)
+    public void setWeight(double characterWeight)
     {
-        this.weight = playerWeight;
+        if(characterWeight <= 0)
+        {
+            throw new IllegalArgumentException("Hero characters can't weigh nothing, or have negative weight.");
+        }
+        else
+        {
+            this.weight = characterWeight;
+        }
     }
     /**
      * Method to print a character's weight
@@ -241,132 +322,188 @@ public class Hero
     }
     
     /**
-     * Method to return a Hero's Strength attribute
-     * @return strength     the character's Strength attribute
+     * Method to return a Hero's Strength Stat
+     * @return strength     the character's Strength Stat
      */
     public int getStatStrength()
     {
         return this.statStrength;
     }
     /**
-     * Method to set a Hero's Strength attribute
-     * @param strength      the character's intended Strength attribute
+     * Method to set a Hero's Strength Stat
+     * @param characterStrength      the character's intended Strength Stat
      */
-    public void setStatStrength(int strength)
+    public void setStatStrength(int characterStrength)
     {
-        this.statStrength = strength;
+        if(characterStrength < 1)
+        {
+            throw new IllegalArgumentException("Any Stat of a Hero character cannot be lower or be lowered to less than 1.");
+        }
+        else
+        {
+            this.statStrength = characterStrength;
+        }
     }
     /**
-     * Method to return a Hero's Dexterity attribute
-     * @return dexterity    the character's Dexterity attribute
+     * Method to return a Hero's Dexterity Stat
+     * @return dexterity    the character's Dexterity Stat
      */
     public int getStatDexterity()
     {
         return this.statDexterity;
     }
     /**
-     * Method to set a Hero's Dexterity attribute
-     * @param dexterity     the character's intended Dexterity attribute
+     * Method to set a Hero's Dexterity Stat
+     * @param characterDexterity     the character's intended Dexterity Stat
      */
-    public void setStatDexterity(int dexterity)
+    public void setStatDexterity(int characterDexterity)
     {
-        this.statDexterity = dexterity;
+        if(characterDexterity < 1)
+        {
+            throw new IllegalArgumentException("Any Stat of a Hero character cannot be lower or be lowered to less than 1.");
+        }
+        else
+        {
+            this.statDexterity = characterDexterity;
+        }
     }
     /**
      * Method to return a Hero's Fortitude stat
-     * @return fortitude    the character's Fortitude attribute
+     * @return fortitude    the character's Fortitude Stat
      */
     public int getStatFortitude()
     {
         return this.statFortitude;
     }
     /**
-     * Method to set a Hero's Fortitude attribute
-     * @param fortitude     the character's intended Fortitude attribute
+     * Method to set a Hero's Fortitude Stat
+     * @param characterFortitude     the character's intended Fortitude Stat
      */
-    public void setStatFortitude(int fortitude)
+    public void setStatFortitude(int characterFortitude)
     {
-        this.statFortitude = fortitude;
+        if(characterFortitude < 1)
+        {
+            throw new IllegalArgumentException("Any Stat of a Hero character cannot be lower or be lowered to less than 1.");
+        }
+        else
+        {
+            this.statFortitude = characterFortitude;
+        }
     }
     /**
-     * Method to return a Hero's Agility attribute
-     * @return agility      the character's Agility attribute
+     * Method to return a Hero's Agility Stat
+     * @return agility      the character's Agility Stat
      */
     public int getStatAgility()
     {
         return this.statAgility;
     }
     /**
-     * Method to set a Hero's Agility attribute
-     * @param agility       the character's intended Agility attribute
+     * Method to set a Hero's Agility Stat
+     * @param characterAgility       the character's intended Agility Stat
      */
-    public void setStatAgility(int agility)
+    public void setStatAgility(int characterAgility)
     {
-        this.statAgility = agility;
+        if(characterAgility < 1)
+        {
+            throw new IllegalArgumentException("Any Stat of a Hero character cannot be lower or be lowered to less than 1.");
+        }
+        else
+        {
+            this.statAgility = characterAgility;
+        }
     }
     /**
-     * Method to return a Hero's Perception attribute
-     * @return perception   the character's Perception attribute
+     * Method to return a Hero's Perception Stat
+     * @return perception   the character's Perception Stat
      */
     public int getStatPerception()
     {
         return this.statPerception;
     }
     /**
-     * Method to set a Hero's Perception attribute
-     * @param perception    the character's intended Perception attribute
+     * Method to set a Hero's Perception Stat
+     * @param characterPerception    the character's intended Perception Stat
      */
-    public void setStatPerception(int perception)
+    public void setStatPerception(int characterPerception)
     {
-        this.statPerception = perception;
+        if(characterPerception < 1)
+        {
+            throw new IllegalArgumentException("Any Stat of a Hero character cannot be lower or be lowered to less than 1.");
+        }
+        else
+        {
+            this.statPerception = characterPerception;
+        }
     }
     /**
-     * Method to return a Hero's Intelligence attribute
-     * @return intelligence     the character's Intelligence attribute
+     * Method to return a Hero's Intelligence Stat
+     * @return intelligence     the character's Intelligence Stat
      */
     public int getStatIntelligence()
     {
         return this.statIntelligence;
     }
     /**
-     * Method to set a Hero's Intelligence attribute
-     * @param intelligence      the character's intended Intelligence attribute
+     * Method to set a Hero's Intelligence Stat
+     * @param characterIntelligence      the character's intended Intelligence Stat
      */
-    public void setStatIntelligence(int intelligence)
+    public void setStatIntelligence(int characterIntelligence)
     {
-        this.statIntelligence = intelligence;
+        if(characterIntelligence < 1)
+        {
+            throw new IllegalArgumentException("Any Stat of a Hero character cannot be lower or be lowered to less than 1.");
+        }
+        else
+        {
+            this.statIntelligence = characterIntelligence;
+        }
     }
     /**
-     * Method to return a Hero's Charisma attribute
-     * @return charisma     the character's Charisma attribute
+     * Method to return a Hero's Charisma Stat
+     * @return charisma     the character's Charisma Stat
      */
     public int getStatCharisma()
     {
         return this.statCharisma;
     }
     /**
-     * Method to set a Hero's Charisma attribute
-     * @param charisma      the character's intended Charisma attribute
+     * Method to set a Hero's Charisma Stat
+     * @param characterCharisma      the character's intended Charisma Stat
      */
-    public void setStatCharisma(int charisma)
+    public void setStatCharisma(int characterCharisma)
     {
-        this.statCharisma = charisma;
+        if(characterCharisma < 1)
+        {
+            throw new IllegalArgumentException("Any Stat of a Hero character cannot be lower or be lowered to less than 1.");
+        }
+        else
+        {
+            this.statCharisma = characterCharisma;
+        }
     }
     /**
-     * Method to return a Hero's Luck attribute
-     * @return luck     the character's Luck attribute
+     * Method to return a Hero's Luck Stat
+     * @return luck     the character's Luck Stat
      */
     public int getStatLuck()
     {
         return this.statLuck;
     }
     /**
-     * Method to set a Hero's Luck attribute
-     * @param luck      the character's intended Luck attribute
+     * Method to set a Hero's Luck Stat
+     * @param characterLuck      the character's intended Luck Stat
      */
-    public void setStatLuck(int luck)
+    public void setStatLuck(int characterLuck)
     {
-        this.statLuck = luck;
+        if(characterLuck < 1)
+        {
+            throw new IllegalArgumentException("Any Stat of a Hero character cannot be lower or be lowered to less than 1.");
+        }
+        else
+        {
+            this.statLuck = characterLuck;
+        }
     }
     
     /**
@@ -378,12 +515,19 @@ public class Hero
         return this.maxHealthPoints;
     }
     /**
-     * Method to set a Hero's maximum health point value. A Hero's maximum health points are given a bonus depending on that Hero's Fortitude attribute.
-     * @param maxHealth     the character's intended maximum health value, not counting any bonus granted by the character's Fortitude attribute  
+     * Method to set a Hero's maximum health point value. A Hero's maximum health points are given a bonus depending on that Hero's Fortitude Stat.
+     * @param characterMaxHealth     the character's intended maximum health value, not counting any bonus granted by the character's Fortitude Stat  
      */
-    public void setMaxHealthPoints(int maxHealth)
+    public void setMaxHealthPoints(int characterMaxHealth)
     {
-        this.maxHealthPoints = maxHealth + this.statFortitude;
+        if(characterMaxHealth < 1)
+        {
+            throw new IllegalArgumentException("Heroes must have a maximum Health point value of at least 1, before applying modifiers granted by Stats");
+        }
+        else
+        {
+            this.maxHealthPoints = characterMaxHealth + (this.statFortitude - 10);
+        }
     }
     /**
      * Method to return a Hero's current health point value
@@ -397,9 +541,13 @@ public class Hero
      * Method to set a Hero's current health point value
      * @param currentHealth     the character's intended current health point value
      */
-    public void setCurrentHealthPoints(int currentHealth)
+    public void setCurrentHealthPoints(int characterCurrentHealth)
     {
-        this.currentHealthPoints = currentHealth;
+        if(characterCurrentHealth < 0)
+        {
+            characterCurrentHealth = 0; //Heroes' health point values should never be less than zero, and a Hero whose current health is zero is Incapacitated
+        }
+        this.currentHealthPoints = characterCurrentHealth;
     }
     /**
      * Method to return a Hero's maximum stamina point value
@@ -410,12 +558,19 @@ public class Hero
         return this.maxStaminaPoints;
     }
     /**
-     * Method to set a Hero's maximum stamina point value. A Hero's maximum stamina points are given a bonus depending on their Agility attribute.
-     * @param maxStamina    the character's intended maximum stamina value, not counting any bonus granted by the Hero's Agility attribute
+     * Method to set a Hero's maximum stamina point value. A Hero's maximum stamina points are given a bonus depending on their Agility Stat.
+     * @param characterMaxStamina    the character's intended maximum stamina value, not counting any bonus granted by the Hero's Agility Stat
      */
-    public void setMaxStaminaPoints(int maxStamina)
+    public void setMaxStaminaPoints(int characterMaxStamina)
     {
-        this.maxStaminaPoints = maxStamina + this.statAgility;
+        if(characterMaxStamina < 1)
+        {
+            throw new IllegalArgumentException("Heroes must have a maximum Stamina point value of at least 1, before applying modifiers granted by Stats");
+        }
+        else
+        {
+            this.maxStaminaPoints = characterMaxStamina + (this.statAgility - 10);
+        }
     }
     /**
      * Method to return a Hero's current stamina point value
@@ -427,11 +582,15 @@ public class Hero
     }
     /**
      * Method to set a Hero's current stamina point value
-     * @param currentStamina    the character's intended current stamina point value
+     * @param characterCurrentStamina    the character's intended current stamina point value
      */
-    public void setCurrentStaminaPoints(int currentStamina)
+    public void setCurrentStaminaPoints(int characterCurrentStamina)
     {
-        this.currentStaminaPoints = currentStamina;
+        if(characterCurrentStamina < 0)
+        {
+            characterCurrentStamina = 0; //Heroes' Stamina points should never drop below 0, and a Hero with an insufficient amount of Stamina points may not perform actions
+        }
+        this.currentStaminaPoints = characterCurrentStamina;
     }
     /**
      * Method to return a Hero's maximum magic point value
@@ -442,12 +601,19 @@ public class Hero
         return this.maxMagicPoints;
     }
     /**
-     * Method to set a Hero's maximum magic point value. A Hero's maximum magic points are given a bonus depending on their Intelligence attribute.
-     * @param maxMagic      the character's intended maximum magic point value, not counting any bonus granted by the Hero's Intelligence attribute
+     * Method to set a Hero's maximum magic point value. A Hero's maximum magic points are given a bonus depending on their Intelligence Stat.
+     * @param characterMaxMagic      the character's intended maximum magic point value, not counting any bonus granted by the Hero's Intelligence Stat
      */
-    public void setMaxMagicPoints(int maxMagic)
+    public void setMaxMagicPoints(int characterMaxMagic)
     {
-        this.maxMagicPoints = maxMagic + this.statIntelligence;
+        if(characterMaxMagic < 0) //Magic points are the only Hero resource that have a base value of zero
+        {
+            throw new IllegalArgumentException("Heroes may not have fewer than zero maximum Magic points.");
+        }
+        else
+        {
+            this.maxMagicPoints = characterMaxMagic + (this.statIntelligence - 10);
+        }
     }
     /**
      * Method to return a Hero's current magic point value
@@ -459,11 +625,15 @@ public class Hero
     }
     /**
      * Method to set a Hero's current magic point value
-     * @param currentMagic      the Hero's intended current magic point value
+     * @param characterCurrentMagic      the Hero's intended current magic point value
      */
-    public void setCurrentMagicPoints(int currentMagic)
+    public void setCurrentMagicPoints(int characterCurrentMagic)
     {
-        this.currentMagicPoints = currentMagic;
+        if(characterCurrentMagic < 0)
+        {
+            characterCurrentMagic = 0; //Heroes' Magic points should never drop below zero, and a Hero with an insufficient amount of Magic points may not perform magical skills
+        }
+        this.currentMagicPoints = characterCurrentMagic;
     }
     
     /**
@@ -476,11 +646,18 @@ public class Hero
     }
     /**
      * Method to set the String in weaponSlotOneName
-     * @param weaponOne     the String to be entered in weaponSlotOneName
+     * @param characterWeaponOneName     the String to be entered in weaponSlotOneName
      */
-    public void setWeaponSlotOneName(String name)
+    public void setWeaponSlotOneName(String characterWeaponOneName)
     {
-        this.weaponSlotOneName = name;
+        if(characterWeaponOneName.length() < 1)
+        {
+            throw new IllegalArgumentException("Names of Hero equipment must be at least one character in length");
+        }
+        else
+        {
+            this.weaponSlotOneName = characterWeaponOneName;
+        }
     }
     /**
      * Method to return the String in weaponSlotTwoName
@@ -492,11 +669,18 @@ public class Hero
     }
     /**
      * Method to set the String in weaponSlotTwoName
-     * @param weaponTwo     the String to be entered in weaponSlotTwoName
+     * @param characterWeaponTwoName     the String to be entered in weaponSlotTwoName
      */
-    public void setWeaponSlotTwoName(String name)
+    public void setWeaponSlotTwoName(String characterWeaponTwoName)
     {
-        this.weaponSlotTwoName = name;
+        if(characterWeaponTwoName.length() < 1)
+        {
+            throw new IllegalArgumentException("Names of Hero equipment must be at least one character in length");
+        }
+        else
+        {
+            this.weaponSlotTwoName = characterWeaponTwoName;
+        }
     }
     
     /**
